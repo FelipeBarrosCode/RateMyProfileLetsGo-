@@ -25,18 +25,18 @@ My plan with this project is to promote a spcae where people can share informati
 
 # Implemented features list
 
- :white_check_mark: Search Bar For Profiles
- :white_check_mark: API endpoints for adding and updating profiles
- :white_check_mark: Like and Dislike
- :white_check_mark: Tracker of people who vote on specific profile
- :white_check_mark: Authentication
- :white_check_mark: Protected Routes
- :white_check_mark: Make sure that only valid profiles can be inserted in the db
- :white_check_mark: 
- :x: Implement better UI elements
- :x: Add image by fetching API of social media profiles (I was more focused on backend for this project)
- :x: Security measures can be improved
- :x: Add IP addres to new registered profiles
- :x: Two Step Verification
- :x: Pagination on profile search
- :x: 
+ :white_check_mark: Search Bar For Profiles<br /> 
+ :white_check_mark: API endpoints for adding and updating profiles <br/> 
+ :white_check_mark: Like and Dislike <br /> 
+ :white_check_mark: Tracker of people who vote on specific profile<br /> 
+ :white_check_mark: Authentication<br /> 
+ :white_check_mark: Protected Routes<br /> 
+ :white_check_mark: Make sure that only valid profiles can be inserted in the db<br /> 
+    <br /> 
+ :x: Implement better UI elements <br /> 
+ :x: Add image by fetching API of social media profiles (I was more focused on backend for this project)<br /> 
+ :x: Security measures can be improved <br /> 
+ :x: Add IP addres to new registered profiles <br /> 
+ :x: Two Step Verification <br /> 
+ :x: Pagination on profile search <br /> 
+
