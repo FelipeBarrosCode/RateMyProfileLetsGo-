@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
+import FooterToUseOnIntro from "../ui/Footer";
 
 
 
@@ -83,7 +84,7 @@ export default function ProfilePost() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <div className="flex flex-col items-center justify-center min-h-screen py-2 overflow-x-hidden">
             {showAlert && (
                 <Alert variant="destructive" className="animate-bounce">
                     <AlertCircle className="h-4 w-4" />
@@ -136,7 +137,10 @@ export default function ProfilePost() {
                 <option value="facebook"></option>
                 <option value="youtube"></option>
                 <option value="instagram"></option>
-                <option value="tikTok"></option>
+                <option value="tiktok"></option>
+                {/* Coming in the future need to add verification method for those methods */}
+                {/* <option value="whatsapp"></option>
+                <option value="snapchat"></option> */}
             </datalist>
 
 
@@ -244,7 +248,7 @@ export default function ProfilePost() {
             <button
                 onClick={onPost}
                 className="p-2 hover:transition-shadow  border  hover:bg-white hover:text-black border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Make post</button>
-
+            <FooterToUseOnIntro/>
         </div>
     )
 

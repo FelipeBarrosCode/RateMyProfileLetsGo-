@@ -2,7 +2,7 @@ import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import { sendEmail } from "@/helpers/mailer";
+import { mailUser } from "@/helpers/mailer";
 
 
 connect()
@@ -10,13 +10,16 @@ connect()
 
 export async function POST(request: NextRequest){
     try {
+
+
         const reqBody = await request.json()
+        const randomGeneratedCode = Math.floor(Math.random() * 100000)
         const {username, email, password} = reqBody
 
         console.log("Request Body" + reqBody);
 
-        //check if user already exists
-        const user = await User.findOne({email:"0801.felipe@gmail.com"})
+        
+        const user = await User.findOne({email:email})
         console.log("Value in user" + user)  
 
         if(user != null){
@@ -31,15 +34,19 @@ export async function POST(request: NextRequest){
         const newUser = new User({
             username,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            isVerfied:false,
+            codeUser:randomGeneratedCode
+            
         })
 
         const savedUser = await newUser.save()
         // console.log(savedUser);
 
         //send verification email
+        
 
-        //await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
+        await mailUser({email:email, emailType: "VERIFY", userID: savedUser._id, randomCode:randomGeneratedCode})
 
         return NextResponse.json({
             message: "User created successfully",

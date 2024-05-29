@@ -4,6 +4,7 @@ import PageIcon from "./PageComponent"
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import LoadingIcon from "../ui/Loader";
+import FooterToUseOnIntro from "../ui/Footer";
 // import {
 //   Pagination,
 //   PaginationContent,
@@ -89,7 +90,7 @@ export default function PageTest(){
       };
 
     return (
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4 overflow-x-hidden">
         <div className="flex flex-row gap-3 justify-center pl-4 pr-4 pt-4 items-center w-screen">
         <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-screen">
             
@@ -110,6 +111,7 @@ export default function PageTest(){
             
             <LoadingIcon/>
           )}  
+          <FooterToUseOnIntro/>
         </div>
         </div>
       );

@@ -37,7 +37,7 @@ export default function CentralFunctionalComponent() {
         
         <>
 
-        <div className="flex flex-row justify-center items-center w-11/12 h-fit-content flex-wrap gap-3 max-[1037px]:w-6/12">
+        <div className="flex flex-row justify-center items-center w-11/12 h-fit-content flex-wrap gap-3 max-[1037px]:w-6/12 ">
 
             
 

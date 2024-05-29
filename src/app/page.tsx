@@ -13,7 +13,7 @@ export default function Home() {
   return (
 
     <>
-      <div className='flex flex-col overflow-x-hidden gap-6'>
+      <div className='flex flex-col overflow-x-hidden gap-8'>
         <HeaserToUseOnIntro />
 
         <MovementIcons />

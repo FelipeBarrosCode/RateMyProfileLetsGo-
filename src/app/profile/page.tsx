@@ -8,6 +8,7 @@ import SearchToUse from "../Assets/Search";
 import EngineToUse from "../Assets/Engine";
 import ProfileToUse from "../Assets/Profile";
 import CentralFunctionalComponent from "./CentralComponents";
+import FooterToUseOnIntro from "../ui/Footer";
 
 
 export default function ProfilePage() {
@@ -38,14 +39,19 @@ export default function ProfilePage() {
         
         <>
 
-            <div className="flex flex-col justify-center items-center h-screen">
+            <div className="flex flex-col  overflow-x-hidden">
+
+            <div className="flex flex-col justify-center items-center h-screen  ">
 
                 <CentralFunctionalComponent/>
 
+                
+                
             </div>
 
-            
-        
+            <FooterToUseOnIntro/>
+           
+            </div>
 
         
 

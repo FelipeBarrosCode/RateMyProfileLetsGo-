@@ -4,12 +4,17 @@ import React, {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import FooterToUseOnIntro from "../ui/Footer";
+import loadingIMAGE from "../Assets/loading.gif"
+import Image from "next/image"
 
 
 
 
 
 export default function LoginPage() {
+    
+    
     const router = useRouter();
     const [user, setUser] = React.useState({
         email: "",
@@ -19,7 +24,7 @@ export default function LoginPage() {
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
 
-
+    const loadImg:string = loadingIMAGE
     const onLogin = async () => {
         try {
             setLoading(true);
@@ -44,8 +49,8 @@ export default function LoginPage() {
     }, [user]);
 
     return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1>{loading ? "Processing" : "Login"}</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 overflow-x-hidden">
+        <h1>{loading ? <Image width={100} height={100} src={loadImg} alt={"not working"}/> : "Login"}</h1>
         <hr />
         
         <label htmlFor="email">email</label>
@@ -70,6 +75,7 @@ export default function LoginPage() {
             onClick={onLogin}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Login here</button>
             <Link href="/signup">Visit Signup page</Link>
+            <FooterToUseOnIntro/>
         </div>
     )
 
