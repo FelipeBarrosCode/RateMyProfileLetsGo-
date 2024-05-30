@@ -14,7 +14,7 @@ interface Mailer{
 export async function mailUser(contentOnEmail:Mailer){
     
     
-    const emailContent = '<h1>Rate My Profile</h1> \n\n <h1>Verify Your Email With Us</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +'</h1>\n\n <a href="http://localhost:3000/verifyemail">Click Here to Verify</a>'
+    const emailContent = '<h1>Rate My  Profile</h1> \n\n <h1>Verify Your Email With Us</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +'</h1>\n\n <a href="http://localhost:3000/verifyemail">Click Here to Verify</a>'
     
     const transporter = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
