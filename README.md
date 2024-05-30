@@ -6,15 +6,15 @@ Use yarn dev to run this project
 This application is supposed to be ran in a locally clone the repo and follow these instructions<br/> 
 
 
-Then complement in a .env file the following enviornament varianbles
+Then complement in a .env file the following enviornament varianbles<br/> 
 
-MONGO_URI=The URI of your mongodb database 
-you can find more about how to do that here -->https://www.mongodb.com/docs/manual/reference/connection-string/
-TOKEN_SECRET=Token for encyption
-DOMAIN=The Url which your APP will run --> I recomend localhost:3000
-EMAIL_PORT = Email Port that you want to use --> if you want to knwo what they are I am using SMTP (https://www.siteground.com/tutorials/email/protocols-pop3-smtp-imap/#:~:text=Email%20ports%20are%20communication%20endpoints,address%20and%20a%20port%20number.)
-USER_EMAIL = User Email that you are going to use to send the 2 step verification email
-PASS_EMAIL = Password of your email that you are going to use to send the emails
+MONGO_URI=The URI of your mongodb database <br/> 
+you can find more about how to do that here -->https://www.mongodb.com/docs/manual/reference/connection-string/<br/> 
+TOKEN_SECRET=Token for encyption<br/> 
+DOMAIN=The Url which your APP will run --> I recomend localhost:3000<br/> 
+EMAIL_PORT = Email Port that you want to use --> if you want to knwo what they are I am using SMTP (https://www.siteground.com/ tutorials/email/protocols-pop3-smtp-imap/#:~:text=Email%20ports%20are%20communication%20endpoints,address%20and%20a%20port%20number.)<br/> 
+USER_EMAIL = User Email that you are going to use to send the 2 step verification email<br/> 
+PASS_EMAIL = Password of your email that you are going to use to send the emails<br/> 
 
 
 # Somethings to be aware
