@@ -36,7 +36,7 @@ My plan with this project is to promote a spcae where people can share informati
  :white_check_mark: Authentication<br /> 
  :white_check_mark: Protected Routes<br /> 
  :white_check_mark: Make sure that only valid profiles can be inserted in the db<br /> 
- :white_check_mark: Email Verification Implemented / Two Step Verification
+ :white_check_mark: Email Verification Implemented / Two Step Verification <br/> 
  :white_check_mark:  Add IP addres to new registered profiles (is in IPV4 so kinda loses the purpouse of it) <br />
     <br /> 
  :x: Implement better UI elements <br /> 
