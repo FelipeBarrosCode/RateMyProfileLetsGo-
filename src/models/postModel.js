@@ -24,12 +24,10 @@ const postSchema = new mongoose.Schema({
     },
     age:{
         type:Number,
-        unique:false,
         required:true
     },
     chanceOfFake:{
         type:Number,
-        unique:false,
         required:true
 
     },chanceOfBot:{
