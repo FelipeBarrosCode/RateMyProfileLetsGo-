@@ -46,12 +46,12 @@ export default function VerifyEmailPage() {
                 type="text"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                placeholder="Real Name"
+                placeholder="Code to Enter"
                 required
             />
             <button
             onClick={verifyUserEmail}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "Signup" : "Signing UP"}</button>
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Verify Email</button>
 
 
 

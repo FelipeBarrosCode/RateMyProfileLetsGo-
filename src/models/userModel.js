@@ -24,7 +24,13 @@ const userSchema = new mongoose.Schema({
         default: false,
     },
     codeUser:{
-        type:Number
+        type:Number,
+        default:null
+    },
+    userIP:{
+        type:String,
+        default:"NONE"
+
     },
     forgotPasswordToken: String,
     forgotPasswordTokenExpiry: Date,

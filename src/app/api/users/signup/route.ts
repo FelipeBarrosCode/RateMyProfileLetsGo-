@@ -13,7 +13,7 @@ export async function POST(request: NextRequest){
 
 
         const reqBody = await request.json()
-        const randomGeneratedCode = Math.floor(Math.random() * 100000)
+        const randomGeneratedCode = await Math.floor(Math.random() * 900000) + 100000
         const {username, email, password} = reqBody
 
         console.log("Request Body" + reqBody);
@@ -30,13 +30,17 @@ export async function POST(request: NextRequest){
         //hash password
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(password, salt)
+        const getIP = request.headers.get('X-Forwarded-For')
+
+
 
         const newUser = new User({
             username,
             email,
             password: hashedPassword,
             isVerfied:false,
-            codeUser:randomGeneratedCode
+            codeUser:randomGeneratedCode,
+            userIP: getIP
             
         })
 

@@ -9,15 +9,14 @@ connect()
 export async function PATCH(request : NextRequest) {
 
     try{
-        const reqBody =  request.json()
+        const reqBody =  await request.json()
 
-        console.log(reqBody)
-
+        console.log(reqBody.code)
         const finalVerify = await User.findOneAndUpdate({
             codeUser:reqBody.code
 
-        },{isVerified:true,
-            codeUser:NaN
+        },{isVerfied:true,
+            codeUser:1
         })
 
         return NextResponse.json({message:"Code Valid Prepare to Use"},{status:200})
