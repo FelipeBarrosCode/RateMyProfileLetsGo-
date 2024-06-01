@@ -32,6 +32,8 @@ export default function CentralFunctionalComponent() {
         setData(res.data.data._id)
     }
 
+  
+
     return (
 
         
@@ -41,10 +43,10 @@ export default function CentralFunctionalComponent() {
 
             
 
-            <Link href="/profilePost"><div className="flex justify-center items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-100"><ProfileToUse/></div></Link>
+            <Link href="/profilePost" ><div className="flex justify-center items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-100"><ProfileToUse/></div></Link>
             
             <Link href="/SearchPage"><div className="flex justify-center items-center border-4 border-black hover:border-white rounded-lg animate-slide-in-bottom delay-200"> <SearchToUse/></div></Link>
-            <Link href="/"><div className="flex justify-center items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-300"><EngineToUse/></div></Link>
+            <Link href={"/profile/" + data}><div className="flex justify-center items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-300"><EngineToUse/></div></Link>
 
         </div>  
         

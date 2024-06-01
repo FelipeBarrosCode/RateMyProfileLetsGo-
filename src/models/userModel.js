@@ -25,7 +25,19 @@ const userSchema = new mongoose.Schema({
     },
     codeUser:{
         type:Number,
-        default:null
+        default:NaN
+    },codeUserToChangeUsername:{
+        type:Number,
+        default:NaN
+    },codeUserToChangePassword:{
+        type:Number,
+        default:NaN
+    },codeUserToChangeEmail:{
+        type:Number,
+        default:NaN
+    },temporaryHoldOfData:{
+        type:String,
+        default:""
     },
     userIP:{
         type:String,

@@ -15,9 +15,14 @@ export async function PATCH(request : NextRequest) {
         const finalVerify = await User.findOneAndUpdate({
             codeUser:reqBody.code
 
-        },{isVerfied:true,
-            codeUser:1
+        },{
+            isVerfied:true,
+            codeUser:NaN
         })
+
+        if(finalVerify == null || finalVerify == undefined ){
+            return NextResponse.json({message:"Does not work"},{status:400})
+        }
 
         return NextResponse.json({message:"Code Valid Prepare to Use"},{status:200})
 
