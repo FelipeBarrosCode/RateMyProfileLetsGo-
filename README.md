@@ -39,6 +39,7 @@ My plan with this project is to promote a spcae where people can share informati
  :white_check_mark: Email Verification Implemented / Two Step Verification <br/> 
  :white_check_mark:  Add IP addres to new registered profiles (is in IPV4 so kinda loses the purpouse of it) <br />
  :white_check_mark:  Pagination on profile search <br /> 
+ :white_check_mark:  Configuration Page where the user can change their usernmae/password/email <br /> 
     <br /> 
  :x: Implement better UI elements <br /> 
  :x: Add image by fetching API of social media profiles (I was more focused on backend for this project)<br /> 
