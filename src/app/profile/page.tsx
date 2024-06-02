@@ -9,6 +9,7 @@ import EngineToUse from "../Assets/Engine";
 import ProfileToUse from "../Assets/Profile";
 import CentralFunctionalComponent from "./CentralComponents";
 import FooterToUseOnIntro from "../ui/Footer";
+import HeaderToUseOnAccount from "../ui/HeaderInAccount";
 
 
 export default function ProfilePage() {
@@ -40,7 +41,7 @@ export default function ProfilePage() {
         <>
 
             <div className="flex flex-col  overflow-x-hidden">
-
+            <HeaderToUseOnAccount/>
             <div className="flex flex-col justify-center items-center h-screen  ">
 
                 <CentralFunctionalComponent/>

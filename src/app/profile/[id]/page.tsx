@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import loadingIMAGE from "../../Assets/loading.gif"
 import Image from "next/image"
 import AccordionToUpdate from "./accordionToUpdateInfo"
+import HeaderToUseOnAccount from "@/app/ui/HeaderInAccount"
 
 export default function UserProfile({params}: any) {
     
@@ -42,6 +43,7 @@ export default function UserProfile({params}: any) {
         {load ?
             
             <div className="flex flex-col items-center justify-center min-h-screen py-2">
+            <HeaderToUseOnAccount/>
             <h1>Hello Welcome Back {userData.username}</h1>
             <hr />
                 

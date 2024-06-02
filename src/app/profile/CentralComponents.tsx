@@ -7,6 +7,7 @@ import {useRouter} from "next/navigation";
 import SearchToUse from "../Assets/Search";
 import EngineToUse from "../Assets/Engine";
 import ProfileToUse from "../Assets/Profile";
+import { animatePageOut } from "@/utils/animate";
 
 
 export default function CentralFunctionalComponent() {
@@ -32,7 +33,18 @@ export default function CentralFunctionalComponent() {
         setData(res.data.data._id)
     }
 
-  
+    function redirectPost(){
+        animatePageOut("/profilePost",router)
+
+    }
+    function redirectSearch(){
+        animatePageOut("/SearchPage",router)
+
+    }
+    function redirectConf(){
+        animatePageOut(("/profile/" + data) ,router)
+
+    }
 
     return (
 
@@ -43,10 +55,10 @@ export default function CentralFunctionalComponent() {
 
             
 
-            <Link href="/profilePost" ><div className="flex justify-center items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-100"><ProfileToUse/></div></Link>
+            <div onClick={redirectPost} className="flex justify-center hover:cursor-pointer items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-100"><ProfileToUse/></div>
             
-            <Link href="/SearchPage"><div className="flex justify-center items-center border-4 border-black hover:border-white rounded-lg animate-slide-in-bottom delay-200"> <SearchToUse/></div></Link>
-            <Link href={"/profile/" + data}><div className="flex justify-center items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-300"><EngineToUse/></div></Link>
+            <div onClick={redirectSearch} className="flex justify-center hover:cursor-pointer items-center border-4 border-black hover:border-white rounded-lg animate-slide-in-bottom delay-200"> <SearchToUse/></div>
+            <div onClick={redirectConf} className="flex justify-center items-center border-4 hover:cursor-pointer border-black hover:border-white rounded-lg animate-slide-in-bottom delay-300"><EngineToUse/></div>
 
         </div>  
         

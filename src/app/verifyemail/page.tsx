@@ -4,6 +4,8 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
+import TransitionLink from "../ui/TransitionLink"
+
 
 export default function VerifyEmailPage() {
 
@@ -58,9 +60,7 @@ export default function VerifyEmailPage() {
             {verified && (
                 <div>
                     <h2 className="text-2xl">Email Verified</h2>
-                    <Link href="/login">
-                        Login
-                    </Link>
+                    <TransitionLink href={"/login"} label={"Go to Login"} />
                 </div>
             )}
             {error && (

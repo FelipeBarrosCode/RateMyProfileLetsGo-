@@ -14,6 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import HeaderToUseOnAccount from "../ui/HeaderInAccount";
 // import {
 //   Pagination,
 //   PaginationContent,
@@ -106,8 +107,10 @@ export default function PageTest() {
   };
 
   return (
-    <div className="flex flex-col gap-4 overflow-x-hidden">
-      <div className="flex flex-row gap-3 justify-center pl-4 pr-4 pt-4 items-center w-screen">
+    <div className="flex flex-col gap-3 overflow-x-hidden">
+
+        <HeaderToUseOnAccount/>
+      <div className="flex flex-row gap-3 justify-center pl-4 pr-4 items-center w-screen">
         <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-screen">
 
           <input className="w-9/12 h-12 text-lg" type="text" id="filtering" placeholder="Search For User" value={inputField} onChange={(e) => { setInput(e.target.value) }} />

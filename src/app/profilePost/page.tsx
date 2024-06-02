@@ -8,6 +8,8 @@ import { toast } from "react-hot-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import FooterToUseOnIntro from "../ui/Footer";
+import { animatePageOut } from "@/utils/animate";
+import HeaderToUseOnAccount from "../ui/HeaderInAccount";
 
 
 
@@ -42,7 +44,7 @@ export default function ProfilePost() {
             setLoading(true);
             response = await axios.post("/api/users/createpost", post);
             console.log("The status is " + response.status)
-            router.push("/SearchPage")
+            animatePageOut("/SearchPage",router)
         } catch (error: any) {
             console.log("Post failed" + error);
             setError(response?.data.message || "An error occurred"); // Set error message
@@ -84,16 +86,26 @@ export default function ProfilePost() {
 
 
     return (
+
+        <div>
+         <div className="overflow-x-hidden">
+         <HeaderToUseOnAccount/>
+         {showAlert && (
+             
+             <Alert variant="destructive" className="animate-bounce fixed bottom-[85%]" >
+                 <AlertCircle className="h-4 w-4" />
+                 <AlertTitle>ERROR PLEASE REVIEW FORM</AlertTitle>
+                 <AlertDescription>
+                     {error}
+                 </AlertDescription>
+             </Alert>
+             
+         )}
+         </div>
+        
+        
         <div className="flex flex-col items-center justify-center min-h-screen py-2 overflow-x-hidden">
-            {showAlert && (
-                <Alert variant="destructive" className="animate-bounce">
-                    <AlertCircle className="h-4 w-4" />
-                    <AlertTitle>ERROR PLEASE REVIEW FORM</AlertTitle>
-                    <AlertDescription>
-                        {error}
-                    </AlertDescription>
-                </Alert>
-            )}
+           
 
             <h1>{loading ? "Processing" : "Signup"}</h1>
             <hr />
@@ -249,6 +261,7 @@ export default function ProfilePost() {
                 onClick={onPost}
                 className="p-2 hover:transition-shadow  border  hover:bg-white hover:text-black border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Make post</button>
             <FooterToUseOnIntro/>
+        </div>
         </div>
     )
 

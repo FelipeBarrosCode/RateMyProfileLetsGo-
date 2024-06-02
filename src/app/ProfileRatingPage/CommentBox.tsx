@@ -97,7 +97,7 @@ export default function CommentaryComponent(contentAboutComment: ProfileData) {
 
     return (<>
 
-        <Card className={cn("w-[90%] h-max")}>
+        <Card className={cn("w-[90%] h-max overflow-x-hidden")}>
             <CardHeader>
                 <CardTitle>{contentAboutComment.commentsAboutProfile}</CardTitle>
                 <CardDescription></CardDescription>

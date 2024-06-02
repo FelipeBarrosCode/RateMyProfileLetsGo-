@@ -23,6 +23,7 @@ import axios from "axios"
 import CommentaryComponent from "./CommentBox"
 import Link from "next/link"
 import FooterToUseOnIntro from "../ui/Footer"
+import HeaderToUseOnAccount from "../ui/HeaderInAccount"
 export default function ProfileRatePage(contentToBeParsed: searchParams) {
 
     const [dataToUse,setDataToUse] = useState([])
@@ -66,9 +67,11 @@ export default function ProfileRatePage(contentToBeParsed: searchParams) {
     console.log(conetentInSearchParam.get("realName"))
     return (
         <>
+        <div className="overflow-x-hidden">
         <div className="flex flex-col justify-center items-center w-screen overflow-x-hidden">
-        <div className="flex flex-col gap-4 w-2/3">
-        <h1 className="text-2xl font-bold">{conetentInSearchParam.get("profileName")}</h1>
+        <HeaderToUseOnAccount/>
+        <div className="flex flex-col gap-4 w-2/3 overflow-x-hidden">
+        <h1 className="text-2xl font-bold overflow-x-hidden">{conetentInSearchParam.get("profileName")}</h1>
 
 
 
@@ -82,7 +85,8 @@ export default function ProfileRatePage(contentToBeParsed: searchParams) {
 
         <h1>What People Say About this Profile</h1>
         <br />
-        <ScrollArea className="h-[40%] w-[w-50%] rounded-md border p-4">
+        <ScrollArea className="h-[40%] w-[w-40%] rounded-md border p-4">
+
 
         {Object.entries(dataToUse).map(([key,value] )=>(
             // eslint-disable-next-line react/jsx-key
@@ -110,6 +114,7 @@ export default function ProfileRatePage(contentToBeParsed: searchParams) {
 
         <FormToUpdateProfile identify={conetentInSearchParam.getAll("urlLink")}/>
         <FooterToUseOnIntro/>
+        </div>
         </div>
         </>
     )

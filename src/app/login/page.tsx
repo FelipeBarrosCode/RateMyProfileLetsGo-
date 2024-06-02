@@ -52,7 +52,9 @@ export default function LoginPage() {
     }, [user]);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2 overflow-x-hidden">
+        <div className="flex flex-col items-center justify-center min-h-screen py-2 overflow-x-hidden gap">
+            
+            <div className="flex flex-col items-center justify-center min-h-screen py-2 overflow-x-hidden gap">
             <h1>{loading ? <Image width={100} height={100} src={loadImg} alt={"not working"} /> : "Login"}</h1>
             <hr />
 
@@ -79,6 +81,7 @@ export default function LoginPage() {
                 Login
             </Button>
             <TransitionLink href={"/signp"} label={"Got To Signup Page"} />
+            </div>
             </div>
             <FooterToUseOnIntro />
         </div>

@@ -12,6 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 import { Slider } from "@/components/ui/slider"
 import { cn } from "@/lib/utils";
+import { animatePageOut } from "@/utils/animate";
 
 
 
@@ -59,8 +60,8 @@ export default function FormToUpdateProfile(identify: string) {
             setLoading(true);
             const response = await axios.patch("/api/users/updateSpecificProfile", post);
             console.log("Post Created", response.data);
-            router.push("/SearchPage");
-
+        
+            animatePageOut("/SearchPage",router)
         } catch (error: any) {
             console.log("Post failed", error.message);
 
@@ -89,7 +90,7 @@ export default function FormToUpdateProfile(identify: string) {
         <>
 
 
-            <Accordion type="single" collapsible className="w-8/12">
+            <Accordion type="single" collapsible className="w-8/12 overflow-x-hidden">
                 <AccordionItem value="item-1">
                     <AccordionTrigger>Add Information about this profile</AccordionTrigger>
                     <AccordionContent >

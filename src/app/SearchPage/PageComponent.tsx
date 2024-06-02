@@ -14,6 +14,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
+import { animatePageOut } from "@/utils/animate"
+import {useRouter} from "next/navigation"
 
 interface ProfileData{
     profileName: string,
@@ -35,7 +37,7 @@ interface ProfileData{
 
 
 export default function PageIcon(post:ProfileData){
-
+    const router = useRouter();
     const [politicalPosition, setPoliticalPosition] = useState("");
     let contentToBeUsed
     const test = ()=>{
@@ -58,6 +60,9 @@ export default function PageIcon(post:ProfileData){
 
 
     }
+
+    
+    
 
 
     useEffect(()=>{
@@ -85,7 +90,7 @@ export default function PageIcon(post:ProfileData){
     
       </CardContent>
       <CardFooter>
-      <Button asChild className=" hover:bg-white hover:text-black"  >
+      <Button asChild className=" hover:bg-white hover:text-black"   >
       <Link href={{
             pathname:"/ProfileRatingPage",
             query:{
@@ -102,6 +107,7 @@ export default function PageIcon(post:ProfileData){
                 id:post._id
 
             }
+        
 
         }} >Go to the page about {post.profileName}</Link>
         

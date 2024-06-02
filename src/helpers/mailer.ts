@@ -54,7 +54,7 @@ export async function mailUserToUpdate(contentOnEmail:Mailer){
 
     if(contentOnEmail.emailType == "VerifyUsername"){
         const siteAddres = "http://localhost:3000/verifySpecificComponent/" + contentOnEmail.emailType
-        const emailContent = '<h1>Rate My  Profile</h1> \n\n <h1> We want to diuble check if your username is being changed</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +' use this code to verify your username</h1>\n\n <a href="http://localhost:3000/verifySpecificComponent">Click Here to Verify</a>'
+        const emailContent = '<h1>Rate My  Profile</h1> \n\n <h1> We want to diuble check if your username is being changed</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +' use this code to verify your username</h1>\n\n <a href="http://localhost:3000/verifySpecificComponent/username">Click Here to Verify</a>'
     
     const transporter = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
@@ -86,7 +86,7 @@ export async function mailUserToUpdate(contentOnEmail:Mailer){
 
     }else if(contentOnEmail.emailType == "VerifyPassword"){
         const siteAddres = "http://localhost:3000/verifySpecificComponent/" + contentOnEmail.emailType
-        const emailContent = '<h1>Rate My  Profile</h1> \n\n <h1> We want to diuble check if your password is being changed</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +' use this code to verify your username</h1>\n\n <a href="http://localhost:3000/verifySpecificComponent">Click Here to Verify</a>'
+        const emailContent = '<h1>Rate My  Profile</h1> \n\n <h1> We want to diuble check if your password is being changed</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +' use this code to verify your username</h1>\n\n <a href="http://localhost:3000/verifySpecificComponent/password">Click Here to Verify</a>'
     
     const transporter = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
@@ -118,7 +118,7 @@ export async function mailUserToUpdate(contentOnEmail:Mailer){
 
     }else if(contentOnEmail.emailType == "VerifyEmail"){
         const siteAddres = "http://localhost:3000/verifySpecificComponent/" + contentOnEmail.emailType
-        const emailContent = '<h1>Rate My  Profile</h1> \n\n <h1> We want to diuble check if your email is being changed</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +' use this code to verify your username</h1>\n\n <a href="http://localhost:3000/verifySpecificComponent">Click Here to Verify</a>'
+        const emailContent = '<h1>Rate My  Profile</h1> \n\n <h1> We want to diuble check if your email is being changed</h1> \n\n <h1>Your code is ' + contentOnEmail.randomCode +' use this code to verify your username</h1>\n\n <a href="http://localhost:3000/verifySpecificComponent/email">Click Here to Verify</a>'
     
     const transporter = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
