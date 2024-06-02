@@ -8,6 +8,7 @@ import AccordionToUpdate from "./accordionToUpdateInfo"
 import HeaderToUseOnAccount from "@/app/ui/HeaderInAccount"
 import FooterToUseOnIntro from "@/app/ui/Footer"
 import { useRouter } from "next/navigation"
+import { animatePageIn } from "@/utils/animate"
 
 export default function UserProfile({params}: any) {
     
@@ -17,7 +18,7 @@ export default function UserProfile({params}: any) {
 
     async function getAccountInfo(){
         try{
-            router.refresh()
+            animatePageIn()
             const content = await axios.patch("/api/users/getAccountInfo",{_id:params.id})
             
             setUserData(content.data.message)

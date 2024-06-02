@@ -10,7 +10,7 @@ import ProfileToUse from "../Assets/Profile";
 import CentralFunctionalComponent from "./CentralComponents";
 import FooterToUseOnIntro from "../ui/Footer";
 import HeaderToUseOnAccount from "../ui/HeaderInAccount";
-import { animatePageOut } from "@/utils/animate";
+import { animatePageIn, animatePageOut } from "@/utils/animate";
 
 
 export default function ProfilePage() {
@@ -33,10 +33,11 @@ export default function ProfilePage() {
     }, []);
 
     const getUserDetails = async () => {
+        animatePageIn()
         const res = await axios.get('/api/users/me')
         console.log(res.data);
         setData(res.data.data._id)
-        router.refresh()
+       
     }
 
     return (
