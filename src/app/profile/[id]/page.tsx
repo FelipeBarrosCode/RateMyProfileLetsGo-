@@ -6,20 +6,24 @@ import loadingIMAGE from "../../Assets/loading.gif"
 import Image from "next/image"
 import AccordionToUpdate from "./accordionToUpdateInfo"
 import HeaderToUseOnAccount from "@/app/ui/HeaderInAccount"
+import FooterToUseOnIntro from "@/app/ui/Footer"
+import { useRouter } from "next/navigation"
 
 export default function UserProfile({params}: any) {
     
     const [userData,setUserData] = useState({})
     const [load,setLoad] = useState(false)
-   
+    const router = useRouter()
 
     async function getAccountInfo(){
         try{
+            router.refresh()
             const content = await axios.patch("/api/users/getAccountInfo",{_id:params.id})
             
             setUserData(content.data.message)
             setLoad(content)
             console.log(content.data.message.username)
+           
 
         }catch(error:any){
 
@@ -31,19 +35,20 @@ export default function UserProfile({params}: any) {
     useEffect(()=>{
 
         getAccountInfo()
-
+    
+       
     },[])
     
     let ObjOfContents =new Array("username","email","password")
     
     
     return (
-        <>
-
+        <div className=" overflow-x-hidden">
+         <HeaderToUseOnAccount/>
         {load ?
+                
+            <div className="flex flex-col h-fit items-center justify-center min-h-screen py-2">
             
-            <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <HeaderToUseOnAccount/>
             <h1>Hello Welcome Back {userData.username}</h1>
             <hr />
                 
@@ -56,9 +61,11 @@ export default function UserProfile({params}: any) {
             <div className="flex flex-col h-screen w-screen justify-center items-center">
                 <Image width={200} height={200}  src={loadingIMAGE} alt={"not working"} />
             </div>
+
+
             
              }
-        
-        </>
+            <FooterToUseOnIntro/>
+        </div>
     )
 }

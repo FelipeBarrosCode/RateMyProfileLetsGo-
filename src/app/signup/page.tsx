@@ -5,6 +5,9 @@ import {useRouter} from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { animatePageOut } from "@/utils/animate";
+import { Button } from "@/components/ui/button";
+import FooterToUseOnIntro from "../ui/Footer";
+import HeaserToUseOnIntro from "../ui/Header";
 
 
 
@@ -45,7 +48,11 @@ export default function SignupPage() {
 
 
     return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+
+        <div className="overflow-x-hidden">
+            <HeaserToUseOnIntro/>
+        <div className="flex flex-col items-center justify-center min-h-screen py-2 overflow-x-hidden" >
+        
         <h1>{loading ? "Processing" : "Signup"}</h1>
         <hr />
         <label htmlFor="username">username</label>
@@ -75,10 +82,15 @@ export default function SignupPage() {
             onChange={(e) => setUser({...user, password: e.target.value})}
             placeholder="password"
             />
-            <button
-            onClick={onSignup}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "Signup" : "Signing UP"}</button>
-            <Link href="/login">Visit login page</Link>
+            
+            
+            <Button className=" hover:bg-white hover:text-black" onClick={onSignup}>
+                SignUp
+            </Button>
+            
+           
+        </div>
+        <FooterToUseOnIntro/>
         </div>
     )
 

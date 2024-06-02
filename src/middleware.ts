@@ -62,7 +62,9 @@ export const config = {
     '/profile/[id]',
     '/login',
     '/signup',
-    '/verifyemail'
+    '/verifyemail',
+    '/ProfileRatingPage',
+    '/verifySpecificComponent/[specificFieldToChange]'
   ], unstable_allowDynamic: [
     "/node_modules/lodash/**",
     "/node_modules/jsonwebtoken/**",

@@ -66,7 +66,7 @@ export default function AccordionToUpdate(content:UpdateConfiguration) {
                     <AccordionTrigger>Update {post.InfoToUpdate} </AccordionTrigger>
                     <AccordionContent >
                         <div className="flex flex-col gap-3 justify-center  items-center left-1/4">
-                            <label htmlFor="changeUpdate">Update : {post.InfoToUpdate} years</label>
+                            <label htmlFor="changeUpdate">Update : {post.InfoToUpdate}</label>
                             <input
                                 className=" appearance-none accent-white accent-border-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-white-600 text-black"
                                 id="changeUpdate"

@@ -10,6 +10,7 @@ import ProfileToUse from "../Assets/Profile";
 import CentralFunctionalComponent from "./CentralComponents";
 import FooterToUseOnIntro from "../ui/Footer";
 import HeaderToUseOnAccount from "../ui/HeaderInAccount";
+import { animatePageOut } from "@/utils/animate";
 
 
 export default function ProfilePage() {
@@ -19,20 +20,23 @@ export default function ProfilePage() {
         try {
             await axios.get('/api/users/logout')
             toast.success('Logout successful')
-            router.push('/login')
+            animatePageOut("/login",router)
+            
         } catch (error:any) {
             console.log(error.message);
             toast.error(error.message)
         }
     }
     useEffect(() => {
-        getUserDetails(); // Call getUserDetails when the component mounts
+        getUserDetails();
+        
     }, []);
 
     const getUserDetails = async () => {
         const res = await axios.get('/api/users/me')
         console.log(res.data);
         setData(res.data.data._id)
+        router.refresh()
     }
 
     return (

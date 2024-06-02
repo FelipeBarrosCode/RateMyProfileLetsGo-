@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
-import { animatePageOut } from "@/utils/animate"
+import { animatePageOut, animatePageOutWithNoRouter } from "@/utils/animate"
 import {useRouter} from "next/navigation"
 
 interface ProfileData{
@@ -44,6 +44,36 @@ export default function PageIcon(post:ProfileData){
         console.log("That is the ID that we are looking for" + post._id)
     }
 
+    function createCustomizedURL(){
+
+        const objToParse = {
+            profileName:post.profileName,
+            realName:post.realLifeName,
+            platform:post.platformThatProfileIsIn,
+            age:post.age,
+            chanceOfFake:post.chanceOfFake,
+            botChance:post.chanceOfBot,
+            profilePurpouse:post.profilePurpouse,
+            politicalPosition:post.politicalPosition,
+            urlLink:post.profileLinkURL,
+            commentsAboutProfile:post.commentsAboutProfile,
+            id:post._id
+
+        }
+        let urlString = "/ProfileRatingPage?"
+
+        for(let key in objToParse){
+            if(objToParse.hasOwnProperty(key)){
+                urlString += ""+ key + "=" + objToParse[key] + "&"
+            }
+        }
+
+        animatePageOut(urlString, router)
+
+
+
+    }
+
     function setProfilePoliticalOpinion(positionInPercentage:number){
 
         if(positionInPercentage <= 100 && positionInPercentage >= 80){
@@ -71,6 +101,8 @@ export default function PageIcon(post:ProfileData){
 
         
     },[])
+
+
     return(
         <>
 
@@ -90,26 +122,11 @@ export default function PageIcon(post:ProfileData){
     
       </CardContent>
       <CardFooter>
-      <Button asChild className=" hover:bg-white hover:text-black"   >
-      <Link href={{
-            pathname:"/ProfileRatingPage",
-            query:{
-                profileName:post.profileName,
-                realName:post.realLifeName,
-                platform:post.platformThatProfileIsIn,
-                age:post.age,
-                chanceOfFake:post.chanceOfFake,
-                botChance:post.chanceOfBot,
-                profilePurpouse:post.profilePurpouse,
-                politicalPosition:post.politicalPosition,
-                urlLink:post.profileLinkURL,
-                commentsAboutProfile:post.commentsAboutProfile,
-                id:post._id
-
-            }
-        
-
-        }} >Go to the page about {post.profileName}</Link>
+      <Button  className=" hover:bg-white hover:text-black" onClick={createCustomizedURL} >
+      
+        Go to the page about {post.profileName}
+      
+      
         
           
         </Button>

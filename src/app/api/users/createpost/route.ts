@@ -16,7 +16,14 @@ export async function POST(request: NextRequest) {
 
         const outGoingRequest = await request.json()
 
+
+        const idFromToken = getDataFromToken(request)
+        if(idFromToken == ""){
+          throw new Error("Receiving input from invalid source")
+        }
         
+
+
         console.log(outGoingRequest)
       
 

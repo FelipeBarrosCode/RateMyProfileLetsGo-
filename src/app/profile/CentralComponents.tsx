@@ -8,6 +8,7 @@ import SearchToUse from "../Assets/Search";
 import EngineToUse from "../Assets/Engine";
 import ProfileToUse from "../Assets/Profile";
 import { animatePageOut } from "@/utils/animate";
+import { Button } from "@/components/ui/button";
 
 
 export default function CentralFunctionalComponent() {
@@ -42,7 +43,7 @@ export default function CentralFunctionalComponent() {
 
     }
     function redirectConf(){
-        animatePageOut(("/profile/" + data) ,router)
+        animatePageOut("/profile/" + data ,router)
 
     }
 
@@ -58,7 +59,8 @@ export default function CentralFunctionalComponent() {
             <div onClick={redirectPost} className="flex justify-center hover:cursor-pointer items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-100"><ProfileToUse/></div>
             
             <div onClick={redirectSearch} className="flex justify-center hover:cursor-pointer items-center border-4 border-black hover:border-white rounded-lg animate-slide-in-bottom delay-200"> <SearchToUse/></div>
-            <div onClick={redirectConf} className="flex justify-center items-center border-4 hover:cursor-pointer border-black hover:border-white rounded-lg animate-slide-in-bottom delay-300"><EngineToUse/></div>
+            
+            <div  onClick={redirectConf} className="flex justify-center items-center border-4 hover:cursor-pointer border-black hover:border-white rounded-lg animate-slide-in-bottom delay-300"><EngineToUse/></div>
 
         </div>  
         
