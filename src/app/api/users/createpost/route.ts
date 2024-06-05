@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
         
 
 
-        console.log(outGoingRequest)
+        
       
 
         let {
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
           platform = platform + ".com"
 
           
-
+        
 
           if((!(URLprofile.includes(profileName)) || !(URLprofile.includes(platform)))){
             
@@ -71,6 +71,18 @@ export async function POST(request: NextRequest) {
 
 
             }
+
+            
+
+            if(parseInt(fakeProbability) > 100 || parseInt(fakeProbability)<0 ){
+              return NextResponse.json({message: "The Fake Probability is too big"}, {status: 400})
+            }
+            if(parseInt(botProbability) > 100 || parseInt(botProbability)<0 ){
+              return NextResponse.json({message: "The Bot Probability is too big"}, {status: 400})
+            }
+
+            // This function will later be added to deal with hate comments swearing - Plan to use AI for that
+            // if(matcher())
 
 
 

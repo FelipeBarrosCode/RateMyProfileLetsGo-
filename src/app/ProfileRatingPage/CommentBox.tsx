@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 interface ProfileData {
     age: number,
@@ -35,18 +36,44 @@ interface ProfileData {
 export default function CommentaryComponent(contentAboutComment: ProfileData) {
     const router = useRouter();
 
+    const [likeState,setLike] = useState<number>(contentAboutComment.like);
+    const [htmlTag,setHtml] = useState<any>();
     
+
+
+   
+    useEffect(()=>{
+        setHtml(chnageLikeColor(likeState))
+        
+    },[likeState])
+
+   
+    function chnageLikeColor(likeAmount:number){
+        if(likeAmount ==0){
+            return <span>{likeAmount}</span>
+        }else if(likeAmount > 0){
+            return <span className=" text-green-400">{likeAmount}</span>
+        }else if(likeAmount < 0){
+            return <span className=" text-red-400">{likeAmount}</span>
+        }
+    }
+
     async function requestToIncreaseLike() {
 
 
         try {
-
+            console.log("HEEEERE")
             const response = await axios.patch("/api/users/likeComment", {
                 like: true,
                 _id: contentAboutComment._id,
                 urlLink: contentAboutComment.url
             })
-            console.log(response)
+         
+            
+            setLike(parseInt(response.data.likes))
+
+            
+            
            
             
            
@@ -67,9 +94,8 @@ export default function CommentaryComponent(contentAboutComment: ProfileData) {
                 _id: contentAboutComment._id,
                 urlLink: contentAboutComment.url
             })
-            console.log(response)
-            
-            
+            setLike(parseInt(response.data.likes))
+           
            
 
         } catch (err) {
@@ -107,7 +133,7 @@ export default function CommentaryComponent(contentAboutComment: ProfileData) {
                 <h3>Profile Political Opinion{setProfilePoliticalOpinion(contentAboutComment.politicalPosition)}</h3>
                 <h3>Chance Of Fake: {contentAboutComment.chanceOfFake}%</h3>
                 <h3>Chance of Bot: {contentAboutComment.chanceOfBot}%</h3>
-                <h3>Profile Like Amount:{contentAboutComment.like}</h3>
+                <h3>Profile Like Amount: {htmlTag}</h3>
                 <h3>Profile Purpose: {contentAboutComment.profilePurpouse}</h3>
 
 

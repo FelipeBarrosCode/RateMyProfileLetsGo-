@@ -57,7 +57,7 @@ export async function PATCH(request: NextRequest) {
         
         reevaluate()
         if (checkForLike) {
-            console.log("Reaches 2")
+           
             fastExhange.like = specificProfile.listOfVoterUserName.get(idNumber).like
 
         } else {
@@ -71,9 +71,9 @@ export async function PATCH(request: NextRequest) {
             
             fastExhange.like = specificProfile.listOfVoterUserName.get(idNumber).like + 1
             specificProfile.listOfVoterUserName.get(idNumber).personWhoDisliked.splice(indexForDislike,1)
-            console.log(specificProfile.listOfVoterUserName)
+            
             fastExhange.personWhoDisliked = specificProfile.listOfVoterUserName.get(idNumber).personWhoDisliked
-            console.log(fastExhange.personWhoDisliked)
+            
         }
 
         specificProfile.listOfVoterUserName.set(idNumber, { ...fastExhange })
@@ -87,9 +87,9 @@ export async function PATCH(request: NextRequest) {
 
 
         return NextResponse.json({
-            response: "WORKING",
-
-
+            
+            likes:fastExhange.like +""
+           
         })
 
 
@@ -104,7 +104,7 @@ export async function PATCH(request: NextRequest) {
 
 
         } else {
-            console.log("Reach Normal")
+           
             fastExhange.like = specificProfile.listOfVoterUserName.get(idNumber).like - 1
 
             specificProfile.listOfVoterUserName.get(idNumber).personWhoDisliked.push(holdIDFromUserLiking)
@@ -114,7 +114,7 @@ export async function PATCH(request: NextRequest) {
 
         reevaluate()
         if (checkForLike && checkForDislike) {
-            console.log("Reach elimination")
+            
             specificProfile.listOfVoterUserName.get(idNumber).personWhoLiked.splice(indexForLike,1)
             fastExhange.like = specificProfile.listOfVoterUserName.get(idNumber).like - 1
             fastExhange.personWhoLiked= specificProfile.listOfVoterUserName.get(idNumber).personWhoLiked
@@ -132,9 +132,9 @@ export async function PATCH(request: NextRequest) {
 
 
         return NextResponse.json({
-            response: "WORKING",
-
-
+            
+            likes:fastExhange.like
+           
         })
 
 
