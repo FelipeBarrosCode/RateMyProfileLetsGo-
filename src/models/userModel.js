@@ -25,23 +25,32 @@ const userSchema = new mongoose.Schema({
     },
     codeUser:{
         type:Number,
-        default:NaN
+        default: 0,
     },codeUserToChangeUsername:{
         type:Number,
-        default:NaN
+        default: 0,
+        
     },codeUserToChangePassword:{
         type:Number,
-        default:NaN
+        default: 0,
+        
     },codeUserToChangeEmail:{
         type:Number,
-        default:NaN
+        default: 0,
+       
     },temporaryHoldOfData:{
         type:String,
-        default:""
+        default:"",
     },
     userIP:{
         type:String,
         default:"NONE"
+
+    },
+    userAccountsSearch:{
+        type:Array,
+        default:[],
+        required:false
 
     },
     forgotPasswordToken: String,

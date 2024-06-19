@@ -15,6 +15,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import HeaderToUseOnAccount from "../ui/HeaderInAccount";
+import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 // import {
 //   Pagination,
 //   PaginationContent,
@@ -38,7 +39,8 @@ interface ProfileData {
   profileLinkURL: string,
   listOfVoterUserName: Map<any, any>,
   _id: string,
-  _v: any
+  _v: any,
+  userAccountsSearch:Array<String>,
 
 }
 
@@ -48,11 +50,14 @@ interface ProfileData {
 export default function PageTest() {
 
   let [amountToBeParsed, setAmountToBeParsed] = useState(9)
-  const [dataToBefetched, setData] = useState<ProfileData[]>()
+  const [dataToBefetched, setData] = useState<ProfileData[]>([])
   const [inputField, setInput] = useState<string>("")
-  const [dataToBeHandled, setHandle] = useState<ProfileData[]>()
+  const [dataToBeHandled, setHandle] = useState<ProfileData[]>([])
+  const [dataToBeHandledTwo, setHandletwo] = useState<ProfileData[]>([])
+  const [dataToBefetchedTwo, setDataTwo] = useState<ProfileData[]>([])
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(amountToBeParsed);
+  const [call, setCall] = useState<boolean>(false)
 
   
 
@@ -61,7 +66,25 @@ export default function PageTest() {
       if (data.ok) {
         data.json().then((content) => {
           setData(content.contentFetched)
-          setHandle(content.contentFetched)
+          setHandletwo(content.contentFetched)
+          console.log(content.contentFetched)
+        }).then((data) => {
+          console.log(dataToBefetched)
+        })
+
+
+      }
+    })
+
+  }
+
+  const fetchDataFirst = async () => {
+    const fetchDataFromUser = await fetch("http://localhost:3000/api/users/getCachedUsernames").then((data) => {
+      if (data.ok) {
+        data.json().then((content) => {
+          setCall(true)
+          setDataTwo(content.contentFetched)
+          setHandletwo(content.contentFetched)
           console.log(content.contentFetched)
         }).then((data) => {
           console.log(dataToBefetched)
@@ -75,29 +98,54 @@ export default function PageTest() {
 
 
   useEffect(() => {
+    fetchDataFirst()
     fetchData()
   }, [])
 
-
   useEffect(() => {
+    
+    
+    
+    
 
+    
     if (inputField == "") {
-      setHandle(dataToBefetched)
+      setHandletwo(dataToBefetchedTwo)
     } else if (inputField.length > 0) {
-      setHandle(dataToBeHandled?.filter((content) => {
+      setHandletwo(dataToBeHandledTwo?.filter((content) => {
         return content.profileName.toLowerCase().includes(inputField.toLowerCase())
 
       }))
-    }
+ 
+  }
+
+
+  }, [inputField])
 
 
 
-  }, [inputField, dataToBefetched, dataToBeHandled])
 
   useEffect(() => {
-    console.log("data fetched is" + dataToBeHandled?.at(0)?.age)
+    
+   
+    
+   
+      if (inputField == "") {
+        setHandle(dataToBefetched)
+      } else if (inputField.length > 0) {
+        setHandle(dataToBeHandled?.filter((content) => {
+          return content.profileName.toLowerCase().includes(inputField.toLowerCase())
+  
+        }))
+      }
+      
+ 
 
-  }, [dataToBeHandled])
+
+
+  }, [inputField])
+
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Here, set the new input value using the value in the input field
@@ -106,31 +154,55 @@ export default function PageTest() {
     console.log("Current input value:", newInputValue);
   };
 
+  const placeholders = [
+    "Search On Instagram",
+    "Search On TikTok",
+    "Search On You Tube",
+    "Search On Facebook",
+    "Search On X",
+  ];
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setInput(e.target.value)
+  };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
+
   return (
     <div className="flex flex-col gap-3 overflow-x-hidden">
 
         <HeaderToUseOnAccount/>
-      <div className="flex flex-row gap-3 justify-center pl-4 pr-4 items-center w-screen">
-        <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-screen">
+    
+      <PlaceholdersAndVanishInput
+        placeholders={placeholders}
+        onChange={handleChange}
+        onSubmit={onSubmit}
+      />
+      <div className="flex flex-row flex-wrap w-screen  justify-center items-center gap-4 pl-4 pr-4">
 
-          <input className="w-9/12 h-12 text-lg" type="text" id="filtering" placeholder="Search For User" value={inputField} onChange={(e) => { setInput(e.target.value) }} />
-        </form>
-
-      </div>
-      <div className="flex flex-row flex-wrap w-screen justify-center items-center gap-4 pl-4 pr-4">
-
-      
-        {dataToBeHandled ? (
-          <>
-            {dataToBeHandled.slice(startIndex,endIndex).map((profile, key) => (
+        <div className="flex flex-row flex-wrap w-9/12  max-[1124px]:justify-center justify-start items-center gap-4 pl-7 pr-4">
+        {dataToBeHandledTwo ? (
+          inputField != "" && dataToBeHandledTwo.length ==0 ?
+          (<>
+            {
+            dataToBeHandled.slice(startIndex,endIndex).map((profile, key) => (
               // eslint-disable-next-line react/jsx-key
               <PageIcon profileName={profile.profileName} realLifeName={profile.realLifeName} platformThatProfileIsIn={profile.platformThatProfileIsIn} age={profile.age} chanceOfFake={profile.chanceOfFake} chanceOfBot={profile.chanceOfBot} commentsAboutProfile={profile.commentsAboutProfile} profilePurpouse={profile.profilePurpouse} politicalPosition={profile.politicalPosition} profileLinkURL={profile.profileLinkURL} listOfVoterUserName={profile.listOfVoterUserName} _id={key} _v={profile._v} />
             ))}
-          </>
-        ) : (
+          </>)
+         : (<>
+          {dataToBeHandledTwo.slice(startIndex,endIndex).map((profile, key) => (
+            // eslint-disable-next-line react/jsx-key
+            <PageIcon profileName={profile.profileName} realLifeName={profile.realLifeName} platformThatProfileIsIn={profile.platformThatProfileIsIn} age={profile.age} chanceOfFake={profile.chanceOfFake} chanceOfBot={profile.chanceOfBot} commentsAboutProfile={profile.commentsAboutProfile} profilePurpouse={profile.profilePurpouse} politicalPosition={profile.politicalPosition} profileLinkURL={profile.profileLinkURL} listOfVoterUserName={profile.listOfVoterUserName} _id={key} _v={profile._v} />
+          ))}
+        </>))
+         : (
 
           <LoadingIcon />
         )}
+        </div>
 
 
         <Pagination >

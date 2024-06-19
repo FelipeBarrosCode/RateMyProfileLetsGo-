@@ -17,7 +17,7 @@ export async function PATCH(request : NextRequest) {
 
         },{
             isVerfied:true,
-            codeUser:NaN
+            codeUser:0
         })
 
         if(finalVerify == null || finalVerify == undefined ){

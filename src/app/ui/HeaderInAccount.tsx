@@ -1,6 +1,8 @@
 import { animatePageOut } from "@/utils/animate";
 import TransitionLink from "./TransitionLink";
-    import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+    import imgLogo from "../../../public/logoRateMyProfile.svg"
+    import Image from "next/image"
 
 export default function HeaderToUseOnAccount() {
 

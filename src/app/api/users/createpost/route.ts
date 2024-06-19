@@ -120,6 +120,7 @@ export async function POST(request: NextRequest) {
 
 
     } catch (err) {
+        console.log(err)
         return NextResponse.json({message: "Something went wrong try later"}, {status: 400})
     }
 

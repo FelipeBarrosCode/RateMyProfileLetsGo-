@@ -13,13 +13,14 @@ export async function POST(request: NextRequest){
 
 
         const reqBody = await request.json()
-        const randomGeneratedCode = await Math.floor(Math.random() * 900000) + 100000
+        const randomGeneratedCode = Math.floor(Math.random() * 900000) + 100000
         const {username, email, password} = reqBody
 
-        console.log("Request Body" + reqBody);
+        console.log(username);
 
         
         const user = await User.findOne({email:email})
+        
         console.log("Value in user" + user)  
 
         if(user != null){
@@ -40,28 +41,41 @@ export async function POST(request: NextRequest){
             password: hashedPassword,
             isVerfied:false,
             codeUser:randomGeneratedCode,
-            userIP: getIP
+            userIP: getIP,
+
             
         })
 
-        const savedUser = await newUser.save()
+       
+        
+        
+        
+        console.log(newUser)
+        
+        
+        await newUser.save()
+
+
+        
         // console.log(savedUser);
 
         //send verification email
         
+        
 
-        await mailUser({email:email, emailType: "VERIFY", userID: savedUser._id, randomCode:randomGeneratedCode})
+        await mailUser({email:email, emailType: "VERIFY", userID: newUser._id, randomCode:randomGeneratedCode})
 
+       
         return NextResponse.json({
             message: "User created successfully",
             success: true,
-            savedUser
         })
         
         
 
 
     } catch (error: any) {
+        console.log(error)
         return NextResponse.json({error: error.message}, {status: 500})
 
     }

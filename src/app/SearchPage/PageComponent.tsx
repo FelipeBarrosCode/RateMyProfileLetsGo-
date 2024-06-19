@@ -16,6 +16,7 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { animatePageOut, animatePageOutWithNoRouter } from "@/utils/animate"
 import {useRouter} from "next/navigation"
+import axios from "axios"
 
 interface ProfileData{
     profileName: string,
@@ -29,7 +30,8 @@ interface ProfileData{
         politicalPosition: number,
         profileLinkURL:string,
         listOfVoterUserName: Map<any,any>, 
-        _id:string
+        _id:string,
+        
         
         
 }
@@ -42,6 +44,21 @@ export default function PageIcon(post:ProfileData){
     let contentToBeUsed
     const test = ()=>{
         console.log("That is the ID that we are looking for" + post._id)
+    }
+
+    async function upadteCaching(){
+
+        try{
+            const response = await axios.patch("http://localhost:3000/api/users/setNewValueInCache",
+                {userSelected:post.profileName}
+            )
+
+        }catch(error:any){
+
+            console.log("Failed")
+
+        }
+
     }
 
     function createCustomizedURL(){
@@ -122,7 +139,10 @@ export default function PageIcon(post:ProfileData){
     
       </CardContent>
       <CardFooter>
-      <Button  className=" hover:bg-white hover:text-black" onClick={createCustomizedURL} >
+      <Button  className=" hover:bg-white hover:text-black" onClick={()=>{
+        createCustomizedURL()
+        upadteCaching()
+      }} >
       
         Go to the page about {post.profileName}
       

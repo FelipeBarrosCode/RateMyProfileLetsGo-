@@ -56,11 +56,11 @@ export default function CentralFunctionalComponent() {
 
             
 
-            <div onClick={redirectPost} className="flex justify-center hover:cursor-pointer items-center border-4  border-black hover:border-white rounded-lg animate-slide-in-bottom delay-100"><ProfileToUse/></div>
+            <div onClick={redirectPost} className="flex justify-center hover:cursor-pointer items-center px-4 py-2 rounded-md border  border-black hover:border-white animate-slide-in-bottom delay-100  text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"><ProfileToUse/></div>
             
-            <div onClick={redirectSearch} className="flex justify-center hover:cursor-pointer items-center border-4 border-black hover:border-white rounded-lg animate-slide-in-bottom delay-200"> <SearchToUse/></div>
+            <div onClick={redirectSearch} className="flex justify-center hover:cursor-pointer items-center px-4 py-2 rounded-md border  border-black hover:border-white animate-slide-in-bottom delay-200  text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"> <SearchToUse/></div>
             
-            <div  onClick={redirectConf} className="flex justify-center items-center border-4 hover:cursor-pointer border-black hover:border-white rounded-lg animate-slide-in-bottom delay-300"><EngineToUse/></div>
+            <div  onClick={redirectConf} className="flex justify-center hover:cursor-pointer items-center px-4 py-2 rounded-md border  border-black hover:border-white animate-slide-in-bottom delay-300  text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"><EngineToUse/></div>
 
         </div>  
         

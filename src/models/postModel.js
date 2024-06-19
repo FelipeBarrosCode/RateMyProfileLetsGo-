@@ -28,12 +28,15 @@ const postSchema = new mongoose.Schema({
     },
     chanceOfFake:{
         type:Number,
-        required:true
+        required:true,
+        unique:false,
 
     },chanceOfBot:{
         type:Number,
         unique:false,
-        required:true
+        required:true,
+        unique:false,
+
 
     },listOfVoterUserName:{
         type:Map,
