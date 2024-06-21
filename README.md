@@ -43,6 +43,7 @@ My plan with this project is to promote a spcae where people can share informati
  :white_check_mark: Like counter changes in realtime in the db and in the UI <br />
 :white_check_mark: Delete Account option <br /> 
  :white_check_mark: Logout Account option <br /> 
+ :white_check_mark: ALL CRUD operations are satisfied <br /> 
     <br /> 
  :x: Implement better UI elements <br /> 
  :x: Add image by fetching API of social media profiles (This feature requires funding)<br /> 
