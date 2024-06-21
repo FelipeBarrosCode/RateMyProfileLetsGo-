@@ -16,7 +16,7 @@ export async function PATCH(request: NextRequest){
     
 
     const findUser = await Users.findById(bodyRequest._id)
-    console.log("user is " + findUser)
+    
 
     return NextResponse.json({message:findUser},{status:200})
 

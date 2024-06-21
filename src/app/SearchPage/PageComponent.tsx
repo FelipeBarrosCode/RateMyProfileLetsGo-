@@ -31,6 +31,7 @@ interface ProfileData{
         profileLinkURL:string,
         listOfVoterUserName: Map<any,any>, 
         _id:string,
+        key:number,
         
         
         
@@ -43,7 +44,7 @@ export default function PageIcon(post:ProfileData){
     const [politicalPosition, setPoliticalPosition] = useState("");
     let contentToBeUsed
     const test = ()=>{
-        console.log("That is the ID that we are looking for" + post._id)
+        
     }
 
     async function upadteCaching(){
@@ -55,7 +56,7 @@ export default function PageIcon(post:ProfileData){
 
         }catch(error:any){
 
-            console.log("Failed")
+            
 
         }
 
@@ -63,33 +64,50 @@ export default function PageIcon(post:ProfileData){
 
     function createCustomizedURL(){
 
-        const objToParse = {
-            profileName:post.profileName,
-            realName:post.realLifeName,
-            platform:post.platformThatProfileIsIn,
-            age:post.age,
-            chanceOfFake:post.chanceOfFake,
-            botChance:post.chanceOfBot,
-            profilePurpouse:post.profilePurpouse,
-            politicalPosition:post.politicalPosition,
-            urlLink:post.profileLinkURL,
-            commentsAboutProfile:post.commentsAboutProfile,
-            id:post._id
+        const objToParse: {
+            profileName: string;
+            realName: string;
+            platform: string;
+            age: number; // Assuming age is a number
+            chanceOfFake: number; // Assuming chanceOfFake is a number
+            botChance: number; // Assuming botChance is a number
+            profilePurpouse: string;
+            politicalPosition: number; // Assuming politicalPosition is a number
+            urlLink: string;
+            commentsAboutProfile: string[];
+            id: string;
+          } = {
+            profileName: post.profileName,
+            realName: post.realLifeName,
+            platform: post.platformThatProfileIsIn,
+            age: post.age,
+            chanceOfFake: post.chanceOfFake,
+            botChance: post.chanceOfBot,
+            profilePurpouse: post.profilePurpouse,
+            politicalPosition: post.politicalPosition,
+            urlLink: post.profileLinkURL,
+            commentsAboutProfile: post.commentsAboutProfile,
+            id: post._id,
+          };
 
-        }
-        let urlString = "/ProfileRatingPage?"
+        let urlString = "http://localhost:3000/ProfileRatingPage?"
 
-        for(let key in objToParse){
+          
+        Object.entries(objToParse).map(([key,value])=>{
             if(objToParse.hasOwnProperty(key)){
-                urlString += ""+ key + "=" + objToParse[key] + "&"
+                urlString += ""+ key + "=" + value + "&"
             }
-        }
+            
+        })
+
+       
 
         animatePageOut(urlString, router)
 
 
 
     }
+
 
     function setProfilePoliticalOpinion(positionInPercentage:number){
 
@@ -124,7 +142,7 @@ export default function PageIcon(post:ProfileData){
         <>
 
 
-        <Card className={cn("w-[380px]")}>
+        <Card className={cn("w-[380px]")} key={post.key}>
       <CardHeader>
         <CardTitle>{post.profileName}</CardTitle>
         <CardDescription>Profile On {post.platformThatProfileIsIn}</CardDescription>

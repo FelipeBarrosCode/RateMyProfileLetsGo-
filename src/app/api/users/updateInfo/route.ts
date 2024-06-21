@@ -15,7 +15,7 @@ export async function PATCH(request: NextRequest) {
     try {
 
         const bodyRequest = await request.json()
-        console.log(bodyRequest._id)
+        
 
         //     interface Mailer{
         //     email:string,
@@ -64,7 +64,7 @@ export async function PATCH(request: NextRequest) {
         }
 
         
-        // console.log("user is " + findUser)
+        // 
 
         return NextResponse.json({ message: "Worked Check Your Email" }, { status: 200 })
 

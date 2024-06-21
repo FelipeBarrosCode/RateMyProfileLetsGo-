@@ -1,4 +1,5 @@
 "use client"
+
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import FormToUpdateProfile from "./FormToUpdateDB"
@@ -18,32 +19,53 @@ interface searchParams {
    
 
 }
+
+
+interface PropsInter{
+    id:string,
+    userAge:number,
+    fakeProbability:number,
+    comment:string,
+    profilePurpouse:string,
+    politicalPosition:number,
+    like:number,
+    botProbability:number,
+    URLprofile:string
+
+}
 import { Progress } from "@/components/ui/progress"
 import axios from "axios"
 import CommentaryComponent from "./CommentBox"
 import Link from "next/link"
 import FooterToUseOnIntro from "../ui/Footer"
 import HeaderToUseOnAccount from "../ui/HeaderInAccount"
-export default function ProfileRatePage(contentToBeParsed: searchParams) {
 
-    const [dataToUse,setDataToUse] = useState([])
+export default function ProfileRatePage() {
+    const conetentInSearchParam = useSearchParams()
+    
+
+    const [dataToUse,setDataToUse] = useState<PropsInter[]>([])
+
+    const [link, setLink] = useState<string>()
+
     
     useEffect(()=>{
 
         getUserInfo()
 
     },[])
-    const getUserInfo = async ()=>{
+    async function getUserInfo(){
 
 
         try{
 
             const variable:any = conetentInSearchParam.get("urlLink")
-
-            const responseFast = await axios.patch("/api/users/InfoAboutSpecificUser", {
+            
+            const responseFast = await axios.patch("http://localhost:3000/api/users/InfoAboutSpecificUser", {
                 urlLink:variable
             });
-            console.log(responseFast.data.object)
+            
+            console.log(responseFast)
             
             setDataToUse(responseFast.data.object)
 
@@ -57,14 +79,16 @@ export default function ProfileRatePage(contentToBeParsed: searchParams) {
 
         }
 
+        setLink(conetentInSearchParam.get("urlLink") as string)
+
     }
   
 
 
     
-    const conetentInSearchParam = useSearchParams()
+    
 
-    console.log(conetentInSearchParam.get("realName"))
+    
     return (
         <>
         <div className="overflow-x-hidden">
@@ -88,15 +112,16 @@ export default function ProfileRatePage(contentToBeParsed: searchParams) {
         <ScrollArea className="h-[40%] w-[w-40%] rounded-md border p-4">
 
 
-        {Object.entries(dataToUse).map(([key,value] )=>(
-            // eslint-disable-next-line react/jsx-key
+        {Object.entries(dataToUse).map(([key, value] )=>(
+
+            
             <CommentaryComponent age={value.userAge}
             chanceOfFake={value.fakeProbability}
             commentsAboutProfile={value.comment}
             profilePurpouse={value.profilePurpouse}
             politicalPosition={value.politicalPosition}
             like={value.like}
-            _id={key} chanceOfBot={value.botProbability} url={value.URLprofile}/>
+            key={key} chanceOfBot={value.botProbability} url={value.URLprofile} _id={value.id}/>
         ))}
         </ScrollArea>
 
@@ -112,7 +137,7 @@ export default function ProfileRatePage(contentToBeParsed: searchParams) {
 
         
 
-        <FormToUpdateProfile identify={conetentInSearchParam.getAll("urlLink")}/>
+        <FormToUpdateProfile identify={link}/>
         <FooterToUseOnIntro/>
         </div>
         </div>

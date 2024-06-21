@@ -18,8 +18,7 @@ interface UpdateConfiguration{
 }
 
 
-
-export default function AccordionToUpdate(content:UpdateConfiguration) {
+export default function AccordionToDelete(content:UpdateConfiguration) {
     
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
@@ -38,12 +37,13 @@ export default function AccordionToUpdate(content:UpdateConfiguration) {
 
 
     })
-    async function onPost(){
+    async function onAction(){
+       if(post.InfoToUpdate == "Delete"){
         try {
             setLoading(true);
-            const response = await axios.patch("/api/users/updateInfo", post);
+            const response = await axios.delete("/api/users/deleteUser");
             
-            animatePageOut("/profile" ,router )
+            animatePageOut("/" ,router )
 
         } catch (error: any) {
             
@@ -53,6 +53,22 @@ export default function AccordionToUpdate(content:UpdateConfiguration) {
             setLoading(false);
            
         }
+       }else if(post.InfoToUpdate == "Logout"){
+        try {
+            setLoading(true);
+            const response = await axios.get("/api/users/logout");
+            
+            animatePageOut("/" ,router )
+
+        } catch (error: any) {
+            
+
+            
+        } finally {
+            setLoading(false);
+           
+        }
+       }
     }
 
     
@@ -61,25 +77,16 @@ export default function AccordionToUpdate(content:UpdateConfiguration) {
         <>
 
 
-            <Accordion type="single" collapsible className="w-8/12">
+            <Accordion type="single" collapsible className="w-8/12 text-red-600">
                 <AccordionItem value="item-1">
-                    <AccordionTrigger>Update {post.InfoToUpdate} </AccordionTrigger>
+                    <AccordionTrigger className="text-red-600 fill-red-600">Update {post.InfoToUpdate} </AccordionTrigger>
                     <AccordionContent >
                         <div className="flex flex-col gap-3 justify-center  items-center left-1/4">
-                            <label htmlFor="changeUpdate">Update : {post.InfoToUpdate}</label>
-                            <input
-                                className=" appearance-none accent-white accent-border-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-white-600 text-black"
-                                id="changeUpdate"
-                                type="text"
+                            <label htmlFor="changeUpdate">Do Following Action : {post.InfoToUpdate}</label>
+                            
 
-
-                                value={post.updatedContent}
-                                onChange={(e) => setPost({ ...post, updatedContent: e.target.value})}
-
-                            />
-
-                            <Button className=" hover:bg-white hover:text-black" onClick={onPost}>
-                                Submit
+                            <Button className=" hover:bg-white hover:text-red-600" onClick={onAction}>
+                                {post.InfoToUpdate}
                             </Button>
                         </div>
 

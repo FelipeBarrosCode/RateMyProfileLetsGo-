@@ -1,5 +1,5 @@
 "use client"
-/* eslint-disable react/jsx-no-undef */
+
 import axios from "axios"
 import { useEffect, useState } from "react"
 import loadingIMAGE from "../../Assets/loading.gif"
@@ -9,10 +9,11 @@ import HeaderToUseOnAccount from "@/app/ui/HeaderInAccount"
 import FooterToUseOnIntro from "@/app/ui/Footer"
 import { useRouter } from "next/navigation"
 import { animatePageIn } from "@/utils/animate"
+import AccordionToDelete from "./AccordionToDeleteOrLogout"
 
 export default function UserProfile({params}: any) {
     
-    const [userData,setUserData] = useState({})
+    const [userData,setUserData] = useState<any>({})
     const [load,setLoad] = useState(false)
     const router = useRouter()
 
@@ -22,13 +23,13 @@ export default function UserProfile({params}: any) {
             const content = await axios.patch("/api/users/getAccountInfo",{_id:params.id})
             
             setUserData(content.data.message)
-            setLoad(content)
-            console.log(content.data.message.username)
+            setLoad(true)
+            
            
 
         }catch(error:any){
 
-            console.log("Error")
+            
 
         }
     }
@@ -37,10 +38,11 @@ export default function UserProfile({params}: any) {
 
         getAccountInfo()
     
-       
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
     let ObjOfContents =new Array("username","email","password")
+    let ObjOfContentsToDelete =new Array( "Logout", "Delete")
     
     
     return (
@@ -53,10 +55,14 @@ export default function UserProfile({params}: any) {
             <h1>Hello Welcome Back {userData.username}</h1>
             <hr />
                 
-            {ObjOfContents.map((key,index)=>(
-                <AccordionToUpdate typeOfInfo={key} id={params.id}/>
+            {ObjOfContents.map((index,key)=>(
+                
+                <AccordionToUpdate key={key} typeOfInfo={index} id={params.id}/>
             ))}
-            
+            {ObjOfContentsToDelete.map((index,key)=>(
+                
+                <AccordionToDelete key={key} typeOfInfo={index} id={params.id}/>
+            ))}
 
             </div>: 
             <div className="flex flex-col h-screen w-screen justify-center items-center">

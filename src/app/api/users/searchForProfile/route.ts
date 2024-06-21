@@ -17,8 +17,8 @@ export async function GET(request: NextRequest) {
         
         
         
-        console.log(contentFetched[0])
-        console.log(contentFetched[1])
+        
+        
 
 
         
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
 
        
 
-        console.log("Calling")
+        
 
 
         // {
@@ -42,7 +42,11 @@ export async function GET(request: NextRequest) {
         //     profileLinkURL:contentToHandle.profileLinkURL,
         // }
 
-        
+        if(contentFetched.length == 0){
+            return NextResponse.json({message:"No Objs"
+            },{status:500})
+
+        }
 
         let reponsee = NextResponse.json({contentFetched})
 
@@ -50,7 +54,7 @@ export async function GET(request: NextRequest) {
 
 
     } catch (error) {
-        console.log("Out of the window")
+        
         return NextResponse.json({ error: "not work" })
     }
 

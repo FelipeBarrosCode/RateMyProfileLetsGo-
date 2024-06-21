@@ -27,18 +27,19 @@ export default function SignupPage() {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<boolean>(false)
 
-    const onSignup = async () => {
+    async function onSignup(){
         try {
+           
+            const response = await axios.post("http://localhost:3000/api/users/signup", user);
+            
+            animatePageOut("/verifyemail",router)
+            
+        } catch (error:any) {
             setError(true)
             setTimeout(() => {
                 setError(false);
             }, 3000);
-            const response = await axios.post("http://localhost:3000/api/users/signup", user);
-            console.log("Signup success", response.data);
-            animatePageOut("/verifyemail",router)
             
-        } catch (error:any) {
-            console.log("Signup failed", error.message);
             toast.error(error.message);
            
         }finally {

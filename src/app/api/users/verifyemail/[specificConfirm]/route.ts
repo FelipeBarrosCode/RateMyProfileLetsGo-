@@ -10,17 +10,17 @@ connect()
 
 export async function PATCH(request : NextRequest) {
     
-    console.log("Reaching here")
+    
     
     try{
         const reqBody =  await request.json()
 
-        console.log(reqBody)
+        
     
 
         let holdData = await User.findOne({codeUser : reqBody.Usercode})
     
-        console.log(holdData)
+        
         
         // if(holdData == null || holdData == undefined ){
         //     return NextResponse.json({message:"Does not work"},{status:400})
@@ -70,7 +70,7 @@ export async function PATCH(request : NextRequest) {
         return NextResponse.json({message:"Code Valid Prepare to Use"},{status:200})
 
     }catch(error:any){
-        console.log("Error coming from Catch")
+        
         return NextResponse.json({message:"Code Invalid"},{status:400})
     }
     

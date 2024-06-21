@@ -11,7 +11,7 @@ export async function PATCH(request : NextRequest) {
     try{
         const reqBody =  await request.json()
 
-        console.log(reqBody.code)
+        
         const finalVerify = await User.findOneAndUpdate({
             codeUser:reqBody.code
 

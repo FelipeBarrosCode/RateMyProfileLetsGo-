@@ -40,15 +40,15 @@ export default function ProfilePost() {
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
 
-    const onPost = async () => {
+    async function onPost(){
         let response;
         try {
             setLoading(true);
             response = await axios.post("/api/users/createpost", post);
-            console.log("The status is " + response.status)
+            
             animatePageOut("/SearchPage",router)
         } catch (error: any) {
-            console.log("Post failed" + error);
+            
             setError(response?.data.message || "An error occurred"); // Set error message
             setShowAlert(true); // Show alert
             setTimeout(() => {

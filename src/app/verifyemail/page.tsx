@@ -14,13 +14,13 @@ export default function VerifyEmailPage() {
     const [error, setError] = useState(false);
     const [code , setCode] = useState("")
 
-    const verifyUserEmail = async () => {
+    async function verifyUserEmail(){
         try {
             await axios.patch('/api/users/verifyemail', {code})
             setVerified(true);
         } catch (error:any) {
             setError(true);
-            console.log(error.reponse.data);
+            
             
         }
 
@@ -31,6 +31,7 @@ export default function VerifyEmailPage() {
         if(token.length > 0) {
             verifyUserEmail();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
    

@@ -16,14 +16,14 @@ import { animatePageIn, animatePageOut } from "@/utils/animate";
 export default function ProfilePage() {
     const router = useRouter()
     const [data, setData] = useState("nothing")
-    const logout = async () => {
+    async function logout(){
         try {
             await axios.get('/api/users/logout')
             toast.success('Logout successful')
             animatePageOut("/login",router)
             
         } catch (error:any) {
-            console.log(error.message);
+            
             toast.error(error.message)
         }
     }
@@ -32,10 +32,10 @@ export default function ProfilePage() {
         
     }, []);
 
-    const getUserDetails = async () => {
+    async function getUserDetails(){
         animatePageIn()
         const res = await axios.get('/api/users/me')
-        console.log(res.data);
+        
         setData(res.data.data._id)
        
     }

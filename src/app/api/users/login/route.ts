@@ -17,7 +17,7 @@ export async function POST(request: NextRequest){
 
         const reqBody = await request.json()
         const {email, password} = reqBody;
-        console.log(reqBody);
+        
 
         
 
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest){
         if(!(user.isVerfied)){
             return NextResponse.json({error: "THIS USER DOE NOT EXIST"}, {status: 400})
         }
-        console.log("user exists");
+        
         if(user.isVerified == false){
             return NextResponse.json({error: "VERIFY YOUR EMAIL"}, {status: 400})
         }
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest){
         if(!validPassword){
             return NextResponse.json({error: "Invalid password"}, {status: 400})
         }
-        console.log(user);
+        
         
         //create token data
         const tokenData = {

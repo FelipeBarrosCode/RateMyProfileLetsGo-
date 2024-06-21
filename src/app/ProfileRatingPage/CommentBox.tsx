@@ -24,7 +24,8 @@ interface ProfileData {
     politicalPosition: number,
     like: number,
     _id: string,
-    url: string
+    url: string,
+    key:string
 
 
 
@@ -62,11 +63,11 @@ export default function CommentaryComponent(contentAboutComment: ProfileData) {
 
 
         try {
-            console.log("HEEEERE")
+            
             const response = await axios.patch("/api/users/likeComment", {
                 like: true,
                 _id: contentAboutComment._id,
-                urlLink: contentAboutComment.url
+                urlLink: contentAboutComment.url,
             })
          
             
@@ -88,11 +89,11 @@ export default function CommentaryComponent(contentAboutComment: ProfileData) {
 
 
         try {
-
+            
             const response = await axios.patch("/api/users/likeComment", {
                 like: false,
                 _id: contentAboutComment._id,
-                urlLink: contentAboutComment.url
+                urlLink: contentAboutComment.url,
             })
             setLike(parseInt(response.data.likes))
            
@@ -123,7 +124,7 @@ export default function CommentaryComponent(contentAboutComment: ProfileData) {
 
     return (<>
 
-        <Card className={cn("w-[90%] h-max overflow-x-hidden")}>
+        <Card key={contentAboutComment.key} className={cn("w-[90%] h-max overflow-x-hidden")}>
             <CardHeader>
                 <CardTitle>{contentAboutComment.commentsAboutProfile}</CardTitle>
                 <CardDescription></CardDescription>

@@ -36,10 +36,10 @@ export async function mailUser(contentOnEmail:Mailer){
 
     transporter.sendMail(info, function (error: string, info: { response: string }){
         if (error) {
-            console.log("ERROR kkkk " + error);
+            
         } else {
-            console.log('Email sent: ' + info.response);
-            console.log("REQUEST SNAP ");
+            
+            
         }
 
     })
@@ -76,10 +76,10 @@ export async function mailUserToUpdate(contentOnEmail:Mailer){
 
     transporter.sendMail(info, function (error: string, info: { response: string }){
         if (error) {
-            console.log("ERROR kkkk " + error);
+            
         } else {
-            console.log('Email sent: ' + info.response);
-            console.log("REQUEST SNAP ");
+            
+            
         }
 
     })
@@ -108,10 +108,10 @@ export async function mailUserToUpdate(contentOnEmail:Mailer){
 
     transporter.sendMail(info, function (error: string, info: { response: string }){
         if (error) {
-            console.log("ERROR kkkk " + error);
+            
         } else {
-            console.log('Email sent: ' + info.response);
-            console.log("REQUEST SNAP ");
+            
+            
         }
 
     })
@@ -140,10 +140,10 @@ export async function mailUserToUpdate(contentOnEmail:Mailer){
 
     transporter.sendMail(info, function (error: string, info: { response: string }){
         if (error) {
-            console.log("ERROR kkkk " + error);
+            
         } else {
-            console.log('Email sent: ' + info.response);
-            console.log("REQUEST SNAP ");
+            
+            
         }
 
     })

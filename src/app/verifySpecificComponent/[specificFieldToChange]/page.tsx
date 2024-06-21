@@ -17,13 +17,13 @@ export default function VerifyEmailPage({params}: any) {
 
     })
 
-    const verifyUserEmail = async () => {
+    async function verifyUserEmail(){
         try {
             await axios.patch(('/api/users/verifyemail/'+ params.specificFieldToChange), {...code})
             setVerified(true);
         } catch (error:any) {
             setError(true);
-            console.log(error.reponse);
+            
             
         }
 

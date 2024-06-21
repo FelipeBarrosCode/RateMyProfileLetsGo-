@@ -16,7 +16,7 @@ export async function PATCH(request: NextRequest){
     const bodyRequest = await request.json()
 
     
-    console.log(bodyRequest.urlLink)
+    
     let holdvalue = bodyRequest.urlLink
     const specificProfile = await PostConf.findOne({profileLinkURL: holdvalue})
     

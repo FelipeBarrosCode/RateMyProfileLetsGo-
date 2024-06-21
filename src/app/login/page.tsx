@@ -32,15 +32,15 @@ export default function LoginPage() {
     const [error, setError] = React.useState<boolean>(false)
 
     const loadImg: StaticImageData = loadingIMAGE
-    const onLogin = async () => {
+    async function onLogin(){
         try {
             setLoading(true);
             const response = await axios.post("/api/users/login", user);
-            console.log("Login success", response.data);
+            
             toast.success("Login success");
             animatePageOut("/profile", router)
         } catch (error: any) {
-            console.log("Login failed", error.message);
+            
             toast.error(error.message);
             setError(true)
             setTimeout(() => {

@@ -19,7 +19,7 @@ export async function PATCH(request: NextRequest) {
 
         const findUser = await Users.findById(holdIDFromUserLiking)
         
-        console.log(findUser)
+        
 
         if(findUser.userAccountsSearch.indexOf(bodyRequest.userSelected) != -1 ){
             return NextResponse.json({message:"Cache kept the same"}, {status:200})

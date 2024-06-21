@@ -16,12 +16,12 @@ export async function POST(request: NextRequest){
         const randomGeneratedCode = Math.floor(Math.random() * 900000) + 100000
         const {username, email, password} = reqBody
 
-        console.log(username);
+        
 
         
         const user = await User.findOne({email:email})
         
-        console.log("Value in user" + user)  
+        
 
         if(user != null){
             return NextResponse.json({error: "User already exists"}, {status: 400})
@@ -50,14 +50,14 @@ export async function POST(request: NextRequest){
         
         
         
-        console.log(newUser)
+        
         
         
         await newUser.save()
 
 
         
-        // console.log(savedUser);
+        // 
 
         //send verification email
         
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest){
 
 
     } catch (error: any) {
-        console.log(error)
+        
         return NextResponse.json({error: error.message}, {status: 500})
 
     }

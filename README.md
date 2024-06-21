@@ -41,9 +41,12 @@ My plan with this project is to promote a spcae where people can share informati
  :white_check_mark:  Pagination on profile search <br /> 
  :white_check_mark:  Configuration Page where the user can change their usernmae/password/email <br /> 
  :white_check_mark: Like counter changes in realtime in the db and in the UI <br />
+:white_check_mark: Delete Account option <br /> 
+ :white_check_mark: Logout Account option <br /> 
     <br /> 
  :x: Implement better UI elements <br /> 
- :x: Add image by fetching API of social media profiles (I was more focused on backend for this project)<br /> 
+ :x: Add image by fetching API of social media profiles (This feature requires funding)<br /> 
+  :x: Add authentication throgh thir party platforms such as Google or GitHub (This feature requires funding)<br /> 
  :x: Security measures can be improved <br /> 
  :x: Verify Whatsaap/Snapchat Profiles <br />
 

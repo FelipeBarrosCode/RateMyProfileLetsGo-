@@ -14,9 +14,11 @@ import { Slider } from "@/components/ui/slider"
 import { cn } from "@/lib/utils";
 import { animatePageOut } from "@/utils/animate";
 
+interface ContentSolve{
+    identify: string | undefined
+}
 
-
-export default function FormToUpdateProfile(identify: string) {
+export default function FormToUpdateProfile(identifyProps: ContentSolve) {
     const router = useRouter();
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
@@ -50,20 +52,20 @@ export default function FormToUpdateProfile(identify: string) {
         comment: "",
         profilePurpouse: "",
         politicalPosition: 50,
-        UrlLink: identify
+        UrlLink: identifyProps.identify
 
 
 
     })
-    const onPost = async () => {
+    async function onPost(){
         try {
             setLoading(true);
             const response = await axios.patch("/api/users/updateSpecificProfile", post);
-            console.log("Post Created", response.data);
+            
         
             animatePageOut("/SearchPage",router)
         } catch (error: any) {
-            console.log("Post failed", error.message);
+            
 
             toast.error(error.message);
         } finally {

@@ -14,13 +14,13 @@ import { Button } from "@/components/ui/button";
 export default function CentralFunctionalComponent() {
     const router = useRouter()
     const [data, setData] = useState("nothing")
-    const logout = async () => {
+    async function logout(){
         try {
             await axios.get('/api/users/logout')
             toast.success('Logout successful')
             router.push('/login')
         } catch (error:any) {
-            console.log(error.message);
+            
             toast.error(error.message)
         }
     }
@@ -28,9 +28,9 @@ export default function CentralFunctionalComponent() {
         getUserDetails(); // Call getUserDetails when the component mounts
     }, []);
 
-    const getUserDetails = async () => {
+    async function getUserDetails(){
         const res = await axios.get('/api/users/me')
-        console.log(res.data);
+        
         setData(res.data.data._id)
     }
 

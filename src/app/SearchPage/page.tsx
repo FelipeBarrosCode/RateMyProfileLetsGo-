@@ -39,7 +39,6 @@ interface ProfileData {
   profileLinkURL: string,
   listOfVoterUserName: Map<any, any>,
   _id: string,
-  _v: any,
   userAccountsSearch:Array<String>,
 
 }
@@ -61,15 +60,16 @@ export default function PageTest() {
 
   
 
-  const fetchData = async () => {
+    async function fetchData(){
     const fetchDataFromUser = await fetch("http://localhost:3000/api/users/searchForProfile").then((data) => {
       if (data.ok) {
+        
         data.json().then((content) => {
           setData(content.contentFetched)
           setHandletwo(content.contentFetched)
-          console.log(content.contentFetched)
+          
         }).then((data) => {
-          console.log(dataToBefetched)
+          
         })
 
 
@@ -78,16 +78,19 @@ export default function PageTest() {
 
   }
 
-  const fetchDataFirst = async () => {
+   async function fetchDataFirst(){
     const fetchDataFromUser = await fetch("http://localhost:3000/api/users/getCachedUsernames").then((data) => {
       if (data.ok) {
+        setCall(true)
         data.json().then((content) => {
-          setCall(true)
-          setDataTwo(content.contentFetched)
-          setHandletwo(content.contentFetched)
-          console.log(content.contentFetched)
+          
+            setDataTwo(content.contentFetched)
+            setHandletwo(content.contentFetched)
+          
+          
+          
         }).then((data) => {
-          console.log(dataToBefetched)
+          
         })
 
 
@@ -151,7 +154,7 @@ export default function PageTest() {
     // Here, set the new input value using the value in the input field
     const newInputValue = (document.getElementById('filtering') as HTMLInputElement).value;
     setInput(newInputValue);
-    console.log("Current input value:", newInputValue);
+    
   };
 
   const placeholders = [
@@ -162,12 +165,12 @@ export default function PageTest() {
     "Search On X",
   ];
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    
     setInput(e.target.value)
   };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitted");
+    
   };
 
   return (
@@ -182,22 +185,20 @@ export default function PageTest() {
       />
       <div className="flex flex-row flex-wrap w-screen  justify-center items-center gap-4 pl-4 pr-4">
 
-        <div className="flex flex-row flex-wrap w-9/12  max-[1124px]:justify-center justify-start items-center gap-4 pl-7 pr-4">
-        {dataToBeHandledTwo ? (
-          inputField != "" && dataToBeHandledTwo.length ==0 ?
+        <div className="flex flex-row flex-wrap w-11/12  max-[1344px]:w-7/12 justify-center items-center gap-4   pl-4 pr-4">
+        {call ? (
+          
+
           (<>
             {
-            dataToBeHandled.slice(startIndex,endIndex).map((profile, key) => (
-              // eslint-disable-next-line react/jsx-key
-              <PageIcon profileName={profile.profileName} realLifeName={profile.realLifeName} platformThatProfileIsIn={profile.platformThatProfileIsIn} age={profile.age} chanceOfFake={profile.chanceOfFake} chanceOfBot={profile.chanceOfBot} commentsAboutProfile={profile.commentsAboutProfile} profilePurpouse={profile.profilePurpouse} politicalPosition={profile.politicalPosition} profileLinkURL={profile.profileLinkURL} listOfVoterUserName={profile.listOfVoterUserName} _id={key} _v={profile._v} />
+            dataToBeHandledTwo.slice(startIndex,endIndex).map((profile:ProfileData, index:number) => (
+              
+              
+              <PageIcon profileName={profile.profileName} realLifeName={profile.realLifeName} platformThatProfileIsIn={profile.platformThatProfileIsIn} age={profile.age} chanceOfFake={profile.chanceOfFake} chanceOfBot={profile.chanceOfBot} commentsAboutProfile={profile.commentsAboutProfile} profilePurpouse={profile.profilePurpouse} politicalPosition={profile.politicalPosition} profileLinkURL={profile.profileLinkURL} listOfVoterUserName={profile.listOfVoterUserName} key={index} _id={profile._id}  />
             ))}
           </>)
-         : (<>
-          {dataToBeHandledTwo.slice(startIndex,endIndex).map((profile, key) => (
-            // eslint-disable-next-line react/jsx-key
-            <PageIcon profileName={profile.profileName} realLifeName={profile.realLifeName} platformThatProfileIsIn={profile.platformThatProfileIsIn} age={profile.age} chanceOfFake={profile.chanceOfFake} chanceOfBot={profile.chanceOfBot} commentsAboutProfile={profile.commentsAboutProfile} profilePurpouse={profile.profilePurpouse} politicalPosition={profile.politicalPosition} profileLinkURL={profile.profileLinkURL} listOfVoterUserName={profile.listOfVoterUserName} _id={key} _v={profile._v} />
-          ))}
-        </>))
+          
+        )
          : (
 
           <LoadingIcon />

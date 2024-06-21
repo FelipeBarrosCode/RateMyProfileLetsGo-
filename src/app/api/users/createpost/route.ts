@@ -106,12 +106,12 @@ export async function POST(request: NextRequest) {
             profileLinkURL: URLprofile
             })
 
-            console.log(postCreate) 
+            
             
 
             const savedUser = await postCreate.save();
 
-            console.log(savedUser)
+            
             
             return NextResponse.json({message: "Created Post"}, {status: 200})
 
@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
 
 
     } catch (err) {
-        console.log(err)
+        
         return NextResponse.json({message: "Something went wrong try later"}, {status: 400})
     }
 

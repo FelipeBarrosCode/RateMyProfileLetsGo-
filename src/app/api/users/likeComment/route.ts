@@ -14,25 +14,30 @@ export async function PATCH(request: NextRequest) {
 
     const bodyRequest = await request.json()
 
-
+    console.log(bodyRequest)
     
 
 
-
+    
 
     let holdvalue = bodyRequest.urlLink
-    let idNumber = bodyRequest._id
+    let idNumber:string = getDataFromToken(request)
+    
 
     const specificProfile = await PostConf.findOne({ profileLinkURL: holdvalue })
 
+
+
     let fastExhange = specificProfile.listOfVoterUserName.get(idNumber)
+  
 
-
+  
+   
     // outGoingRequest.personWhoLiked = []
     //outGoingRequest.personWhoDisliked=[]
     let holdIDFromUserLiking: string = getDataFromToken(request)
-
-    console.log(specificProfile.listOfVoterUserName.get(idNumber).personWhoLiked.indexOf(holdIDFromUserLiking))
+    
+    
 
     let checkForLike = specificProfile.listOfVoterUserName.get(idNumber).personWhoLiked.indexOf(holdIDFromUserLiking) >= 0
     let checkForDislike = specificProfile.listOfVoterUserName.get(idNumber).personWhoDisliked.indexOf(holdIDFromUserLiking) >= 0
