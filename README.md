@@ -47,7 +47,6 @@ My plan with this project is to promote a spcae where people can share informati
     <br /> 
  :x: Implement better UI elements <br /> 
  :x: Add image by fetching API of social media profiles (This feature requires funding)<br /> 
-  :x: Add authentication throgh thir party platforms such as Google or GitHub (This feature requires funding)<br /> 
  :x: Security measures can be improved <br /> 
  :x: Verify Whatsaap/Snapchat Profiles <br />
 
